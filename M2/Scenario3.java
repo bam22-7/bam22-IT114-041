@@ -21,14 +21,59 @@ public class Scenario3 extends BaseClass {
         // Step 3: Add code to solve the problem (add/commit as needed)
         Object[] output = new Object[arr.length];
         // Start Solution Edits
-        
 
+                //bam22 6-16-26
+
+        //Step 1: Iterate the array by using a for loop
+        //Step 2: use instanceof to check type
+        //Step 3: Use basic conditionals and multiplication by -1 to make positive
+        //Step 4: convert back to original types
+        //Step 5: assign back to the same slot of the output array
+
+        for (int i = 0; i < arr.length; i++) {
+            Object val = arr[i];
+
+            if (val instanceof Integer) {
+                int num = (Integer) val;
+                if (num < 0) {
+                    num = num * -1;
+                }
+                output[i] = num;
+                
+            } else if (val instanceof Double) {
+                double num = (Double) val;
+                if (num < 0) {
+                    num = num * -1.0;
+                }
+                output[i] = num;
+                
+            } else if (val instanceof Float) {
+                float num = (Float) val;
+                if (num < 0) {
+                    num = num * -1.0f;
+                }
+                output[i] = num;
+                
+            } else if (val instanceof String) {
+                String strVal = (String) val;
+                
+                output[i] = strVal.replace("-", "");
+                
+            } else {
+
+                try {
+                    output[i] = val; 
+                } catch (Exception e) {
+                    output[i] = val;
+                }
+            }
+        }
         // End Solution Edits
         printOutputWithType(output, true);
     }
 
-    public static void main(String[] args) {
-        final String ucid = "mt85"; // <-- change to your UCID
+    public static void main(String[] args) { 
+        final String ucid = "bam22"; // <-- change to your UCID
         // no edits below this line
         printHeader(ucid, 3);
         bePositive(array1, 1);
@@ -40,4 +85,3 @@ public class Scenario3 extends BaseClass {
 
     }
 }
-ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
