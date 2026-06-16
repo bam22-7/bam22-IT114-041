@@ -17,15 +17,31 @@ public class Scenario1 extends BaseClass {
         // Step 1: sketch out plan using comments (include ucid and date)
         // Step 2: Add/commit your outline of comments (required for full credit)
         // Step 3: Add code to solve the problem (add/commit as needed)
+        
         // Start Solution Edits
-       
+
+        // bam22 6-16-26
+
+        //Step 1: iterate through the array by using a for each loop
+        //Step 2: Using % to determine if the value is odd
+        //Step 3: printing odd values seprated by commas to output the odd value ensuring it's a single line of text
+       boolean firstPrinted = false; 
+        for (int value : arr) {
+            if (value % 2 != 0) { 
+                if (firstPrinted) {
+                    System.out.print(", "); 
+                }
+                System.out.print(value);
+                firstPrinted = true;
+            }
+        }
 
         // End Solution Edits
         System.out.println("");
         System.out.println("______________________________________");
     }
     public static void main(String[] args) {
-        final String ucid = "mt85"; // <-- change to your UCID
+        final String ucid = "bam22"; // <-- change to your UCID
         // no edits below this line
         printHeader(ucid, 1);
         printOdds(array1,1);
