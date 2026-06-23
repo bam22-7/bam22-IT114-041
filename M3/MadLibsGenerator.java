@@ -18,7 +18,7 @@ Challenge 3: Mad Libs Generator (Randomized Stories)
 
 public class MadLibsGenerator extends BaseClass {
     private static final String STORIES_FOLDER = "M3/stories";
-    private static String ucid = "mt85"; // <-- change to your ucid
+    private static String ucid = "bam22"; // <-- change to your ucid
 
     public static void main(String[] args) {
         printHeader(ucid, 3,
@@ -34,7 +34,47 @@ public class MadLibsGenerator extends BaseClass {
             return;
         }
         List<String> lines = new ArrayList<>();
+        //bam22 6-23-26
+
+        //Step 1: The program randomly picks a story
+        //Step 2: It will read each line into lines
+        //Step 3: detect any placeholders and 
+        //Step 4: Ask the user to input a word for the placeholders 
+
         // Start edits
+        
+File[] storyFiles = folder.listFiles();
+File selectedStory = storyFiles[(int) (Math.random() * storyFiles.length)];
+
+
+try (Scanner fileScanner = new Scanner(selectedStory)) {
+    while (fileScanner.hasNextLine()) {
+        lines.add(fileScanner.nextLine());
+    }
+} catch (Exception e) {
+    System.out.println("Error reading story file: " + e.getMessage());
+    printFooter(ucid, 3);
+    scanner.close();
+    return;
+}          
+
+for (int i = 0; i < lines.size(); i++) {
+    String line = lines.get(i);  
+    // while there are placeholders in the line
+    while (line.contains("<") && line.contains(">")) {
+        int start = line.indexOf("<");
+        int end = line.indexOf(">", start);
+        if (end == -1) break; // safety check
+        String placeholder = line.substring(start + 1, end);
+        String displayPlaceholder = placeholder.replace("_", " ");
+        System.out.print("Enter a " + displayPlaceholder + ": ");
+        String userInput = scanner.nextLine();
+        line = line.substring(0, start) + userInput + line.substring(end + 1);
+    }
+    
+    lines.set(i, line);
+}
+
 
         // load a random story file
 
@@ -59,4 +99,3 @@ public class MadLibsGenerator extends BaseClass {
         scanner.close();
     }
 }
-
